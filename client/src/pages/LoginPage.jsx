@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 const LoginPage = () => {
 
-  const [currState, setCurrState] = useState("Sign up")
+  const [currState, setCurrState] = useState("Login")
   const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -23,7 +23,7 @@ const LoginPage = () => {
       return;
     }
 
-    login(currState === 'Sign up' ? 'sign-up' : 'login', {
+    login(currState === 'Sign up' ? 'signup' : 'login', {
       fullName,
       email,
       password,
@@ -34,7 +34,7 @@ const LoginPage = () => {
   return (
     <div className='min-h-screen bg-cover bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl'>
       <img src={assets.logo_big} alt="" className='w-[min(30vw,250px)]'/>
-      <form onSubmit={onSubmitHandler} className='border-2 bg-white/8 text-white border-gray-500 p-6 flex flex-col gap-6 rounded-lg shadow-lg'>
+      <form onSubmit={onSubmitHandler} className='border-2 bg-white/8 text-white border-gray-500 p-6 flex flex-col gap-6 rounded-lg shadow-lg '>
         <h2 className='font-medium text-2xl flex justify-between items-center'>
           {currState}
           {
@@ -62,13 +62,13 @@ const LoginPage = () => {
         }
 
         <button type='submit' className='py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer'> 
-          {currState === "Sign up" ? "Create an Account" : "Login"}
+          {currState === "Sign up" && isDataSubmitted ? "Create an Account" : currState ==='Sign up' && !isDataSubmitted ? 'Next' : "Login"}
         </button>
 
-        <div className='flex items-center gap-2 text-sm text-gray-500'>
+        { currState === 'Sign up' && isDataSubmitted && (<div className='flex items-center gap-2 text-sm text-gray-500'>
           <input required type="checkbox" name="" id="" />
           <p>Agree to the terms of use & privacy policy.</p>
-        </div>
+        </div>)}
 
         <div className='flex flex-col gap-2'>
           {
