@@ -34,7 +34,7 @@ export const getMessages = async (req, res) => {
     const messages = await Message.find({
       $or : [
         {senderId: myId, receiverId: selectedUserId},
-        {senderId: selectedUserId, receiverId: myId}
+        {senderId: selectedUserId, receiverId: myId},
       ]
     })
     await Message.updateMany({senderId: selectedUserId, receiverId: myId}, {seen: true});
@@ -44,7 +44,6 @@ export const getMessages = async (req, res) => {
   } catch (error) {
     console.log(error.message);
     res.json({success: false, message: error.message})
-    
   }
 }
 
@@ -70,7 +69,7 @@ export const sendMessage = async(req, res) => {
     let imageUrl;
     if(image){
       const uploadResponse = await cloudinary.uploader.upload(image);
-      imageUrl = uploadResponse.secure_url
+      imageUrl = uploadResponse.secure_url;
     }
 
     const newMessage = await Message.create({
@@ -83,13 +82,13 @@ export const sendMessage = async(req, res) => {
     //Emit new message to the receiver's socket
     const receiverSocketId = userSocketMap[receiverId];
     if(receiverSocketId){
-      io.to(receiverSocketId).emit("newMessage", newMessage)
+      io.to(receiverSocketId).emit("newMessage", newMessage);
     }
 
     res.json({success: true, newMessage})
 
   } catch (error) {
     console.log(error.message);
-    res.json({success: false, message: error.message})
+    res.json({success: false, message: error.message});
   }
 }

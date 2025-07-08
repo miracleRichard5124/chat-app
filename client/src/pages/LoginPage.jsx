@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 const LoginPage = () => {
 
-  const [currState, setCurrState] = useState("Login")
+  const [currState, setCurrState] = useState("Sign up")
   const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")

@@ -48,10 +48,12 @@ export const login = async(req, res) => {
   }
 }
 
+//controller to check if User is Authenticated 
 export const checkAuth = (req, res) => {
   res.json({success: true, user: req.user});
 }
 
+//Controller to Update User Profile
 export const updateProfile = async(req, res) => {
   try {
     const {fullName, profilePic, bio} = req.body;
@@ -66,6 +68,7 @@ export const updateProfile = async(req, res) => {
     }
     res.json({success: true, user: updatedUser})
   } catch (error) {
+    console.log(error.message);
     res.json({success: false, message: error.message})
   }
 }

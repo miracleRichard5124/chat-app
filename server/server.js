@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
 
   if(userId) userSocketMap[userId] = socket.id;
 
-  //Emit all users to all connected clients
+  //Emit all online users to all connected clients
   io.emit('getOnlineUsers', Object.keys(userSocketMap));
 
   socket.on('disconnect', ()=> {
@@ -40,9 +40,10 @@ io.on('connection', (socket) => {
 app.use(express.json({limit: "4mb"}));
 app.use(cors());
 
+//Routes setup
 app.use('/api/status', (req, res) => res.send("Server is Live"));
-app.use('/api/auth', userRouter)
-app.use('/api/messages', messageRouter)
+app.use('/api/auth', userRouter);
+app.use('/api/messages', messageRouter);
 
 await connectDB();
 

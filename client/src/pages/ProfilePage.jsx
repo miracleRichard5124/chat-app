@@ -24,8 +24,9 @@ const ProfilePage = () => {
     reader.onload = async () => {
       const base64Img = reader.result;
       await updateProfile({ profilePic: base64Img, fullName: name, bio });
-      navigate('/')
-    }
+      navigate("/");
+      return;
+    };
   };
 
   return (
@@ -84,7 +85,9 @@ const ProfilePage = () => {
             </button>
           </form>
           <img
-            className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${selectedImg && "rounded-full"}`}
+            className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${
+              selectedImg && "rounded-full"
+            }`}
             src={authUser?.profilePic || assets.logo_icon}
             alt=""
           />
