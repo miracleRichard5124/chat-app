@@ -67,7 +67,7 @@ export const ChatProvider = ({children}) => {
       }else{
         setUnseenMessages((prevUnseenMessages) => ({
             ...prevUnseenMessages, [newMessage.senderId] : 
-            prevUnseenMessages[newMessage.senderId] ? prevMessages[newMessage.senderId] + 1 : 1,
+            prevUnseenMessages[newMessage.senderId] ? prevUnseenMessages[newMessage.senderId] + 1 : 1,
         }));
       };
     });

@@ -28,11 +28,12 @@ const ChatContainer = () => {
     if(!file || !file.type.startsWith("image/")){
       toast.error("Please select an image");
       return;
-    } const reader = new FileReader();
+    } 
+    const reader = new FileReader();
 
     reader.onloadend = async () => {
       await sendMessage({image: reader.result})
-      e.target.value = ""
+      e.target.value = "";
     }
     reader.readAsDataURL(file)
   }
@@ -58,8 +59,7 @@ const ChatContainer = () => {
         <img src={selectedUser.profilePic || assets.avatar_icon} alt="" className='w-8 rounded-full'/>
         <p className='flex-1 text-lg text-white flex items-center gap-2'>
           {selectedUser.fullName}
-          {onlineUsers.includes(selectedUser._id)}
-          <span className='w-2 h-2 rounded-full bg-green-500'></span>
+          {onlineUsers.includes(selectedUser._id) && <span className='w-2 h-2 rounded-full bg-green-500'></span>}
         </p>
         <img onClick={() => {setSelectedUser(null)}} src={assets.arrow_icon} alt="" className='md:hidden max-w-7'/>
         <img src={assets.help_icon} alt="" className='max-md:hidden max-w-5'/>
@@ -74,7 +74,7 @@ const ChatContainer = () => {
               <p className={`p-2 max-w-[200px] md:text-sm font-light rounded-lg mb-8 break-all bg-violet-500/30 text-white ${msg.senderId === authUser._id ? 'rounded-br-none' : 'rounded-bl-none' }`}>{msg.text}</p>
             )}
             <div className='text-center text-xs'>
-              <img src={msg.senderId === authUser._id ? authUser.profilePic || assets.avatar_icon : selectedUser?.profilePic || assets.avatar_icon} alt=""  className='w-7 rounded-full'/>
+              <img src={msg.senderId === authUser._id ? authUser?.profilePic || assets.avatar_icon : selectedUser?.profilePic || assets.avatar_icon} alt=""  className='w-7 rounded-full'/>
               <p className='text-gray-500'>{forMatMessageTime(msg.createdAt)}</p>
             </div>
 
