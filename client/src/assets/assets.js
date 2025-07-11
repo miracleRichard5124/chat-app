@@ -14,7 +14,6 @@ import send_button from './send_button.svg'
 import menu_icon from './menu_icon.png'
 import arrow_icon from './arrow_icon.png'
 import code from './code.svg'
-import bgImage from './bgImage.svg'
 import pic1 from './pic1.png'
 import pic2 from './pic2.png'
 import pic3 from './pic3.png'
@@ -34,13 +33,14 @@ const assets = {
     menu_icon,
     arrow_icon,
     code,
-    bgImage,
     profile_martin
 }
 
 export default assets;
 
-export const imagesDummyData = [pic1, pic2, pic3, pic4, pic1, pic2]
+export const bgImage = '/bgImage.svg';
+
+export const imagesDummyData = [pic1, pic2, pic3, pic4, pic1, pic2];
 
 export const userDummyData = [
     {
